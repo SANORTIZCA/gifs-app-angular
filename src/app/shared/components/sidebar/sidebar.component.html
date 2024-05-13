@@ -1,9 +1,13 @@
 <div class="bg-dark border-righ p-3" id="sidebar">
   <h3 class="text-light">Gifs App</h3>
   <hr class="text-white">
-  <div class="list-group list-reset">
+
+  <div *ngFor="let tag of tags"
+  class="list-group list-reset">
     <button class="list-group-item list-group-item-action">
-      Valorant
+      <!-- PIPE |: los pipes permiten transforman la información de manera visual la data que mostraremos en pantalla sin mutar la data real -->
+      {{ tag | titlecase }}
     </button>
   </div>
+
 </div>
