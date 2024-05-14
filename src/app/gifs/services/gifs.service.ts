@@ -8,10 +8,15 @@ import { SearchResponse, Gif } from './../interfaces/gifs.interfaces';
   providedIn: 'root',
 })
 export class GifsService {
+
   public _gifList: Gif[] = [];
+
   private _tagsHistory: string[] = [];
+
   private _apiKey: string = 'qlwxv2euwy4SBuV28SLfpliGurdnfwqY';
+
   private _http: HttpClient;
+
   private _serviceUrl:string = 'https://api.giphy.com/v1/gifs';
 
   constructor(http: HttpClient) {
@@ -33,6 +38,7 @@ export class GifsService {
     this._tagsHistory.unshift(tag);
     /* Se corta del 0 a la posición 10 */
     this._tagsHistory = this._tagsHistory.splice(0, 10);
+    this.saveLocalStorage();
   }
 
   public searchTag(tag: string): void {
@@ -52,6 +58,11 @@ export class GifsService {
       .subscribe(resp => {
         this._gifList = resp.data;
       });
+  }
+
+  private saveLocalStorage():void{
+    /* LOCALSTORAGE solo permite guardar strings por lo tanto se usa JSON para transformar esta información de un objeto como un string */
+    localStorage.setItem('history', JSON.stringify(this._tagsHistory))
   }
   /*Se pueden realizar promesas como se hace con JS
   public async searchTag(tag: string): Promise<void> {
