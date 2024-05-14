@@ -2,9 +2,11 @@
   <h3 class="text-light">Gifs App</h3>
   <hr class="text-white">
 
-  <div *ngFor="let tag of tags"
-  class="list-group list-reset">
-    <button class="list-group-item list-group-item-action mb-1">
+  <div class="list-group list-reset">
+    <button
+      *ngFor="let tag of tags"
+      (click)="searchTag(tag)"
+      class="list-group-item list-group-item-action mb-1">
       <!-- PIPE |: los pipes permiten transforman la información de manera visual la data que mostraremos en pantalla sin mutar la data real -->
       {{ tag | titlecase }}
     </button>
