@@ -21,6 +21,7 @@ export class GifsService {
 
   constructor(http: HttpClient) {
     this._http = http;
+    this.loadLocalStorage();
   }
 
   public get tagsHistory(): string[] {
@@ -64,6 +65,14 @@ export class GifsService {
     /* LOCALSTORAGE solo permite guardar strings por lo tanto se usa JSON para transformar esta información de un objeto como un string */
     localStorage.setItem('history', JSON.stringify(this._tagsHistory))
   }
+
+  private loadLocalStorage():void{
+    if(!localStorage.getItem('history')) return;
+    this._tagsHistory = JSON.parse(localStorage.getItem('history')!);
+    if(this._tagsHistory.length === 0) return;
+    this.searchTag(this._tagsHistory[0]);
+  }
+
   /*Se pueden realizar promesas como se hace con JS
   public async searchTag(tag: string): Promise<void> {
     if (tag.length === 0) return;
