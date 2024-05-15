@@ -1,0 +1,13 @@
+<div class="card mb-2 text-center bg-dark">
+  <!-- Cuando se le quiere decir a Angular el valor de algún atributo HTML es igual a una expresión de JS se pone con llaves cuadradas, con esto se hace binding del valor de una expresion -->
+  <img
+    [src]="gif.images.downsized_medium.url"
+    [alt]="gif.title"
+    class="card-img-top"
+    >
+  <div class="card-body text-white">
+    <p class="card-text">
+      {{ gif.title }}
+    </p>
+  </div>
+</div>
