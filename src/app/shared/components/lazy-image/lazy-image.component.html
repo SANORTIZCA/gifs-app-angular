@@ -1,0 +1,20 @@
+<div class="d-flex justify-content-center">
+  <!-- Las imagenes en Angular tienen un evento llamado Load, que es cuando la imagen ya se ha cargado -->
+  <!-- ngStyle es como el ngClass que sirve para poner diferentes propiedades de manera condicional basado en las propiedades de mis clases de Angular -->
+  <img
+    [src]="_url"
+    [alt]="_alt"
+    class="card-img-top animate__animated animate__fadeIn"
+    (load)="onLoad()"
+    [ngStyle]="{display: _hasLoaded ? '' : 'none'}"
+  />
+
+  <img
+    *ngIf="!_hasLoaded"
+    src="assets/loader.svg"
+    height="35px"
+    width="35px"
+    class="mt-3"
+  />
+
+</div>
